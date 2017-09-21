@@ -1,0 +1,13 @@
+One list of tasks instead of two
+Fix endpoints to perform expected functions
+  add
+  complete
+  delete
+Fix endpoints to send back useful data
+  add
+  complete
+  delete
+Fix get all tasks endpoint to handle query
+
+
+Write sql queries for database instead of using server array.

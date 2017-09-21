@@ -1,24 +1,66 @@
 .App {
+  /* text-align: center; */
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #217389;
+  color: white;
+  font-family: Courier New, Courier, monospace;
+  font-size: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 50px 0;
+}
+h1 {
+  font-size: 50px;
+  text-decoration: underline;
+  text-align: center;
+  margin: 15px;
+}
+h2 {
+  text-decoration: underline;
+  margin: 10px;
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+h3 {
+  background-color: white;
+  color: #217389;
+  padding: 3px;
+  text-align: center;
+  /* border: solid .5px white; */
+}
+li {
+  display: flex;
+  justify-content: space-between;
+}
+.Todo {
+  width: 42vw;
+  padding: 0 20px;
+  margin: 0 5vw;
+}
+.addForm {
+  margin: 20px 0 0 0;
+  /* display: flex;
+  justify-content: space-between */
+}
+form {
+  text-align: center;
+  /* display: flex;
+  justify-content: space-around; */
+  padding: 10px;
+}
+form > * {
+  margin: 5px;
+}
+.Completed {
+  width: 42vw;
+  padding: 0 20px;
+  margin: 0 3vw;
+}
+.Search {
+  /* width: 30vw; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
