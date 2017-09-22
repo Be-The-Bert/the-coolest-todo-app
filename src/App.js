@@ -35,10 +35,7 @@ class App extends Component {
   }
   addTask(e, text, priority) {
     e.preventDefault();
-    priority = +priority; 
-    axios.post('/api/add-task', {name: text, priority}).then(res => {
-      console.log(res.data)
-    })
+    
   }
   // addItem(val) {
   //   let todoCopy = this.state.todo.slice();
@@ -48,9 +45,7 @@ class App extends Component {
   //   })
   // }
   toggleComplete(id) {
-    axios.put(`/api/toggle-complete/${id}`).then(res => {
-      console.log(res.data);
-    })
+    
   }
   // completeItem(index, val){
   //   let todoCopy = this.state.todo.slice();
@@ -63,12 +58,10 @@ class App extends Component {
   //   })
   // }
   deleteTask(id) {
-    axios.delete(`/api/delete-task/${id}`).then(res => {
-      console.log(res.data);
-    })
+    
   }
   filter(priority) {
-    console.log(`filter tasks by priority ${+priority}`);
+    
   }
   render() {
     return (
