@@ -1,32 +1,52 @@
 import React, { Component } from 'react';
+
 class Todo extends Component {
   constructor() {
     super();
     this.state ={
-      input: ''
+      text: '',
+      priority: 1
     }
   }
   render() {
-    console.log(this.props);
     return (
       <div className='Todo'>
         <h1>Todo</h1>
         <ol className='todoList'>
           {
-            this.props.todoList.map((item, i, arr) => {
+            this.props.todoList.map((task, i, arr) => {
               return (
-                <li onClick={() => this.props.completeItem(i, item)} key={i}>{item}</li>
+                <li key={i}>{task.name}<div><button onClick={() => this.props.toggleComplete(i, task)}>Complete</button><button onClick={() => this.props.deleteTask(task.id)}>Delete</button></div></li>
               )
             })
           }
         </ol>
-        <div className='inputContainer'>
-          <input type='text' value={this.state.input} onChange={(e) => {
-            this.setState({
-              input: e.target.value
-            })
-          }}/>
-          <button onClick={() => this.props.addItem(this.state.input)}>Add The Thing!</button>
+        <div className='addForm'>
+          <h3>Add a new task</h3>
+          <form>
+            <input type='text' value={this.state.text} onChange={(e) => {
+              this.setState({
+                text: e.target.value
+              })
+            }}/>
+            {/* <input type='option' value={this.state.priority} onChange={(e) => {
+              this.setState({
+                priority: e.target.value
+              })
+            }}/> */}
+            <select name="priority" onChange={(e) => {
+              this.setState({
+                priority: e.target.value
+              })
+            }}>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button onClick={(e) => this.props.addTask(e, this.state.text, this.state.priority)}>Add!</button>
+          </form>
         </div>
       </div>
     )
