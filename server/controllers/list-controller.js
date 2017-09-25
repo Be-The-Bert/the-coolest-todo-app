@@ -25,8 +25,6 @@ var todo = [
   }
 ]
 var id = 19;
-
-
 // var completed = [
 //   {
 //     name: 'walk the dog',
@@ -42,6 +40,10 @@ var id = 19;
 
 module.exports = {
   getTodoList: function(req, res) {
+    const db = req.app.get('db');
+    db.getAllTasks().then(data => {
+      console.log(data)
+    })
     const { priority } = req.query
     if (!priority || priority == 0) {
       res.status(200).send(todo);
