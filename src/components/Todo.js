@@ -14,10 +14,12 @@ class Todo extends Component {
         <h1>Todo</h1>
         <ol className='todoList'>
           {
-            this.props.todoList.map((task, i, arr) => {
-              return (
-                <li key={i}>{task.name}<div><button onClick={() => this.props.toggleComplete(i, task)}>Complete</button><button onClick={() => this.props.deleteTask(task.id)}>Delete</button></div></li>
-              )
+            this.props.list.map((task, i, arr) => {
+              if (!task.completed) {
+                return (
+                  <li key={i}>{task.name}<div><button onClick={() => this.props.toggleComplete(task.id)}>Complete</button><button onClick={() => this.props.deleteTask(task.id)}>Delete</button></div></li>
+                )
+              }
             })
           }
         </ol>

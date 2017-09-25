@@ -20,7 +20,7 @@ massive('postgres://ozjsmllmnthrhy:5eb5442bbfbd05bd9dbdf20a4619f949c3e167e1acbc4
 
 //ENDPOINTS
 app.get('/api/todo', lc.getTodoList);
-app.get('/api/completed', lc.getCompletedList);
+// app.get('/api/completed', lc.getCompletedList);
 
 app.post('/api/add-task', lc.addTask);
 

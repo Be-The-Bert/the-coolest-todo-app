@@ -13,8 +13,7 @@ class App extends Component {
   constructor() {
     super();
     this.state ={
-      todo: [],
-      completed: []
+      todo: []
     }
     this.addTask = this.addTask.bind(this);
     // this.completeItem = this.completeItem.bind(this);
@@ -24,18 +23,24 @@ class App extends Component {
   }
   componentDidMount() {
     axios.get('/api/todo').then(res => {
-      console.log(res)
-      axios.get('/api/completed').then(res2 => {
-        this.setState({
-          todo: res.data,
-          completed: res2.data
-        })
+      this.setState({
+        todo: res.data
       })
+      // axios.get('/api/completed').then(res2 => {
+      //   this.setState({
+      //     todo: res.data,
+      //     completed: res2.data
+      //   })
+      // })
     })
   }
   addTask(e, text, priority) {
     e.preventDefault();
-    
+    axios.post('/api/add-task', {name: text, priority}).then(res => {
+      this.setState({
+        todo: res.data
+      })
+    })
   }
   // addItem(val) {
   //   let todoCopy = this.state.todo.slice();
@@ -45,7 +50,11 @@ class App extends Component {
   //   })
   // }
   toggleComplete(id) {
-    
+    axios.put(`/api/toggle-complete/${id}`).then(res => {
+      this.setState({
+        todo: res.data
+      })
+    })
   }
   // completeItem(index, val){
   //   let todoCopy = this.state.todo.slice();
@@ -58,16 +67,24 @@ class App extends Component {
   //   })
   // }
   deleteTask(id) {
-    
+    axios.delete(`/api/delete-task/${id}`).then(res => {
+      this.setState({
+        todo: res.data
+      })
+    })
   }
   filter(priority) {
-    
+    axios.get(`/api/todo?priority=${priority}`).then(res => {
+      this.setState({
+        todo: res.data
+      })
+    })
   }
   render() {
     return (
       <div className="App">
-        <Todo todoList={this.state.todo} addTask={this.addTask} toggleComplete={this.toggleComplete} deleteTask={this.deleteTask} />
-        <Completed completedList={this.state.completed} toggleComplete={this.toggleComplete} deleteTask={this.deleteTask} />
+        <Todo list={this.state.todo} addTask={this.addTask} toggleComplete={this.toggleComplete} deleteTask={this.deleteTask} />
+        <Completed list={this.state.todo} toggleComplete={this.toggleComplete} deleteTask={this.deleteTask} />
         <Filter filter={this.filter} />
       </div>
     );

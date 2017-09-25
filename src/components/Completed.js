@@ -6,10 +6,12 @@ function Completed(props) {
         <h1>Completed</h1>
         <ul>
             {
-                props.completedList.map((task, i, arr) => {
+                props.list.map((task, i, arr) => {
+                  if (task.completed) {
                     return (
                         <li key={i}>{task.name}<div><button onClick={() => props.toggleComplete(task.id)}>Un-Complete</button><button onClick={() => props.deleteTask(task.id)}>Delete</button></div></li>
                     )
+                  }
                 })
             }
         </ul>
