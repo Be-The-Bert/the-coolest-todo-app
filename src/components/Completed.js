@@ -1,4 +1,5 @@
 import React, { Component } from 'react'; 
+import { connect } from 'react-redux';
 
 function Completed(props) {
     return (
@@ -27,4 +28,9 @@ function Completed(props) {
     )
   }
 }*/
-export default Completed
+function mapStateToProps(state) {
+  return {
+    list: state.todo
+  }
+}
+export default connect(mapStateToProps)(Completed);
