@@ -41,9 +41,17 @@ var id = 19;
 module.exports = {
   getTodoList: function(req, res) {
     const db = req.app.get('db');
-    db.getAllTasks().then(data => {
-      res.status(200).send(data);
-    })
+    const { priority } = req.query;
+    if (!priority || priority == 0) {
+      db.getAllTasks().then(data => {
+        res.status(200).send(data);
+      })
+    } else {
+      db.getFilteredTasks([priority]).then(data => {
+        res.status(200).send(data);
+      })
+    }
+    
 
     // const { priority } = req.query
     // if (!priority || priority == 0) {
@@ -53,17 +61,13 @@ module.exports = {
     //   res.status(200).send(filteredTodo)
     // }
   },
-  // getCompletedList: function(req, res) {
-  //   res.status(200).send(completed);
-  // },
   addTask: function (req, res) {
     const db = req.app.get('db');
-    db.addTask([req.body.name, req.body.priority]).then(data1 => {
+    const { name, priority } = req.body;
+    db.addTask([name, priority]).then(data1 => {
       db.getAllTasks().then(data2 => {
-        console.log(data2);
         res.status(200).send(data2);
       })
-      // res.status(200).send(data);
     })
     // let newTask = {
     //   name: req.body.name,
@@ -76,28 +80,41 @@ module.exports = {
     // res.status(200).send(todo)
   },
   toggleComplete: function (req, res) {
-    var index;
-    var oldTask = todo.filter(function(task, i) {
-      if (task.id == req.params.id) {
-        index = i;
-        return task
-      }
+    const db = req.app.get('db');
+    const { id } = req.params;
+    db.getCompleted([id]).then(data1 => {
+      let completed = !data1[0].completed
+      db.toggleComplete([id, completed]).then(data2 => {
+        db.getAllTasks().then(data3 => {
+          res.status(200).send(data3);
+        })
+      })
     })
-    todo[index].completed = !todo[index].completed;
-    res.status(200).send(todo)
+    // var index;
+    // var oldTask = todo.filter(function(task, i) {
+    //   if (task.id == req.params.id) {
+    //     index = i;
+    //     return task
+    //   }
+    // })
+    // todo[index].completed = !todo[index].completed;
+    // res.status(200).send(todo)
   },
   deleteTask: function (req, res) {
-    var index;
-    var oldTask = todo.filter(function(task, i) {
-      if (task.id == req.params.id) {
-        index = i;
-        return task
-      }
+    const db = req.app.get('db');
+    const { id } = req.params
+    db.deleteTask([id]).then(data1 => {
+      db.getAllTasks().then(data2 => {
+        res.status(200).send(data2);
+      })
     })
-    todo.splice(index, 1);
-    res.status(200).send(todo)
+    // var oldTask = todo.filter(function(task, i) {
+    //   if (task.id == req.params.id) {
+    //     index = i;
+    //     return task
+    //   }
+    // })
+    // todo.splice(index, 1);
+    // res.status(200).send(todo)
   }
 }
-
-
-
