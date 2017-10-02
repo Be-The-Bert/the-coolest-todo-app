@@ -55,3 +55,7 @@ class Todo extends Component {
   }
 }
 export default Todo
+
+
+// WEBPACK FOOTER //
+// src/components/Todo.js

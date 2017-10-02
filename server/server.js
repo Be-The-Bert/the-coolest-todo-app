@@ -13,8 +13,8 @@ app.use(bodyParser.json());
 massive('postgres://ozjsmllmnthrhy:5eb5442bbfbd05bd9dbdf20a4619f949c3e167e1acbc45e3f7a631bf0cd84141@ec2-107-22-235-167.compute-1.amazonaws.com:5432/dbmthsjhk8soou?ssl=true')
 .then( db => {
     app.set('db', db);
-    app.listen(port, () => console.log(`Listening on port ${port}`));
     console.log('successful db hookup')
+    app.listen(port, () => console.log(`Listening on port ${port}`));
   })
 .catch( err => console.log(err));
 

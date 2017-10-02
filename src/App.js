@@ -36,7 +36,7 @@ class App extends Component {
   }
   addTask(e, text, priority) {
     e.preventDefault();
-    axios.post('/api/add-task', {name: text, priority}).then(res => {
+    axios.post('/api/add-task', {name: text, priority: priority}).then(res => {
       this.setState({
         todo: res.data
       })
@@ -91,3 +91,12 @@ class App extends Component {
   }
 }
 export default App;
+
+
+
+// WEBPACK FOOTER //
+// src/App.js
+
+
+// WEBPACK FOOTER //
+// src/App.js
