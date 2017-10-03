@@ -50,10 +50,10 @@ export function getTasks(priority) {
     }
 }
 
-export function addTask(text, priority) {
+export function addTask(name, priority) {
   return {
     type: ADDTASK,
-    payload: axios.post('/api/add-task', {name: text, priority}).then(res => res.data)
+    payload: axios.post('/api/add-task', {name, priority}).then(res => res.data)
   }
 }
 

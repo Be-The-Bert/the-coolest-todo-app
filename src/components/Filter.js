@@ -1,4 +1,6 @@
 import React, { Component } from 'react';  
+import { connect } from 'react-redux';
+import { getTasks } from './../ducks/reducer';
 
 class Filter extends Component {
   constructor() {
@@ -8,6 +10,7 @@ class Filter extends Component {
     }
   }
   render() {
+    const { getTasks } = this.props;
     return (
       <div className='Search'>
         <h2>Filter by Priority</h2>
@@ -24,10 +27,10 @@ class Filter extends Component {
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-          <button onClick={() => this.props.filter(this.state.input)}>Go!</button>
+          <button onClick={() => getTasks(this.state.input)}>Go!</button>
         </div>
       </div>
     )
   }
 }
-export default Filter
+export default connect(null, { getTasks })(Filter);

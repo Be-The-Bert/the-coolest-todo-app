@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addTask, toggleComplete, deleteTask } from './../ducks/reducer';
 
 class Todo extends Component {
   constructor() {
@@ -10,15 +11,16 @@ class Todo extends Component {
     }
   }
   render() {
+    const { list, addTask, toggleComplete, deleteTask } = this.props;
     return (
       <div className='Todo'>
         <h1>Todo</h1>
         <ol className='todoList'>
           {
-            this.props.list.map((task, i, arr) => {
+            list.map((task, i, arr) => {
               if (!task.completed) {
                 return (
-                  <li key={i}>{task.name}<div><button onClick={() => this.props.toggleComplete(task.id)}>Complete</button><button onClick={() => this.props.deleteTask(task.id)}>Delete</button></div></li>
+                  <li key={i}>{task.name}<div><button onClick={() => toggleComplete(task.id)}>Complete</button><button onClick={() => deleteTask(task.id)}>Delete</button></div></li>
                 )
               }
             })
@@ -48,7 +50,10 @@ class Todo extends Component {
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-            <button onClick={(e) => this.props.addTask(e, this.state.text, this.state.priority)}>Add!</button>
+            <button onClick={(e) => {
+              e.preventDefault();
+              addTask(this.state.text, this.state.priority)
+              }}>Add!</button>
           </form>
         </div>
       </div>
@@ -60,4 +65,4 @@ function mapStateToProps(state) {
     list: state.todo
   }
 }
-export default connect(mapStateToProps)(Todo);
+export default connect(mapStateToProps, { addTask, toggleComplete, deleteTask })(Todo);
