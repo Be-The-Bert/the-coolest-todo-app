@@ -1,6 +1,9 @@
 import React, { Component } from 'react'; 
 import { connect } from 'react-redux';
+
 import { toggleComplete, deleteTask } from './../ducks/reducer';
+
+import './Completed.css';
 
 function Completed(props) {
     const { list, toggleComplete, deleteTask} = props;

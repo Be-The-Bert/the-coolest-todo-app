@@ -1,6 +1,9 @@
 import React, { Component } from 'react';  
 import { connect } from 'react-redux';
+
 import { getTasks } from './../ducks/reducer';
+
+import './Filter.css';
 
 class Filter extends Component {
   constructor() {
@@ -12,7 +15,7 @@ class Filter extends Component {
   render() {
     const { getTasks } = this.props;
     return (
-      <div className='Search'>
+      <div className='Filter'>
         <h2>Filter by Priority</h2>
         <div className='inputContainer'>
           <select name="priority" onChange={(e) => {

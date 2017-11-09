@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css?family=Knewave");
+@import url("https://fonts.googleapis.com/css?family=Nunito:300,600");
+h1 {
+  font-family: "Knewave", cursive;
+  font-size: 45px; }
+
+h2 {
+  font-family: "Knewave", cursive;
+  font-size: 35px; }
+
+h3 {
+  font-family: "Knewave", cursive;
+  font-size: 25px; }
+
+ul {
+  width: 75%; }
+
+li {
+  font-family: "Nunito", sans-serif;
+  display: flex;
+  justify-content: space-between; }

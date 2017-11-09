@@ -8,9 +8,7 @@ import Todo from './components/Todo';
 import Completed from './components/Completed';
 import Filter from './components/Filter';
 
-import './reset.css';
 import './App.css';
-
 
 class App extends Component {
   componentDidMount() {

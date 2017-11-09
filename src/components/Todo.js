@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import { addTask, toggleComplete, deleteTask } from './../ducks/reducer';
+
+import './Todo.css';
 
 class Todo extends Component {
   constructor() {
@@ -15,7 +18,7 @@ class Todo extends Component {
     return (
       <div className='Todo'>
         <h1>Todo</h1>
-        <ol className='todoList'>
+        <ul className='todoList'>
           {
             list.map((task, i, arr) => {
               if (!task.completed) {
@@ -25,7 +28,7 @@ class Todo extends Component {
               }
             })
           }
-        </ol>
+        </ul>
         <div className='addForm'>
           <h3>Add a new task</h3>
           <form>

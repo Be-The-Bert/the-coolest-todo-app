@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Knewave");
+@import url("https://fonts.googleapis.com/css?family=Nunito:300,600");
+.Todo {
+  background: #447B5F;
+  padding: 20px;
+  width: 50vw; }
+
+.Todo > * {
+  margin: 10px 0; }
+
+.addForm {
+  width: calc(50vw - 40px);
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; }
