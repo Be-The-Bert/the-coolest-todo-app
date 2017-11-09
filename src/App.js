@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Todo from './components/Todo';
 import Completed from './components/Completed';
-
+MERGE CONFLICT V1
 class App extends Component {
   constructor() {
     super();
