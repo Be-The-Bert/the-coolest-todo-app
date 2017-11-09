@@ -1,0 +1,22 @@
+@import './sass-vars.scss';
+
+h1 {
+  font-family: $displayFontFamily;
+  font-size: 45px;
+}
+h2 {
+  font-family: $displayFontFamily;
+  font-size: 35px;
+}
+h3 {
+  font-family: $displayFontFamily;
+  font-size: 25px;
+}
+ul {
+  width: 75%;
+}
+li {
+  font-family: $straightFontFamily;
+  display: flex;
+  justify-content: space-between;
+}

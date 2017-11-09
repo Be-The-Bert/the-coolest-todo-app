@@ -1,0 +1,11 @@
+@import './../sass-vars.scss';
+
+.Completed {
+  background: $lightColor;
+  padding: 20px;
+  width: 50vw;
+  color: $mediumColor;
+}
+.Completed>* {
+  margin: 10px 0;
+}

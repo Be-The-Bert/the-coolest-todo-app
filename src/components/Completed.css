@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Knewave");
 @import url("https://fonts.googleapis.com/css?family=Nunito:300,600");
-.App {
-  display: flex;
-  flex-wrap: wrap;
-  min-height: 100vh; }
+.Completed {
+  background: #DCEED1;
+  padding: 20px;
+  width: 50vw;
+  color: #447B5F; }
+
+.Completed > * {
+  margin: 10px 0; }

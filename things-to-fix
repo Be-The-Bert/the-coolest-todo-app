@@ -1,0 +1,40 @@
+*One list of tasks instead of two
+  front end
+  back end
+
+
+Fix endpoints to perform expected functions
+  add
+  complete
+  delete
+Write front end requests
+  add
+  complete
+  delete
+Fix endpoints to send back useful data
+  add
+  complete
+  delete
+
+
+Fix get all tasks endpoint to handle query
+
+
+DATABASE TIME WOOOOOOOO!
+
+create table todo (
+    id serial primary key,
+    name varchar(40),
+    priority integer,
+    completed boolean
+);
+insert into todo (name, priority, completed)
+values('buy milk', 1, false);
+insert into todo (name, priority, completed)
+values('switch laundry', 3, false);
+insert into todo (name, priority, completed)
+values('take nap', 2, false);
+insert into todo (name, priority, completed)
+values('cook dinner', 4, true);
+insert into todo (name, priority, completed)
+values('learn sql', 5, false);

@@ -1,35 +1,71 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { addTask, toggleComplete, deleteTask } from './../ducks/reducer';
+
+import './Todo.css';
+
 class Todo extends Component {
   constructor() {
     super();
     this.state ={
-      input: ''
+      text: '',
+      priority: 1
     }
   }
   render() {
-    console.log(this.props);
+    const { list, addTask, toggleComplete, deleteTask } = this.props;
     return (
       <div className='Todo'>
         <h1>Todo</h1>
-        <ol className='todoList'>
+        <ul className='todoList'>
           {
-            this.props.todoList.map((item, i, arr) => {
-              return (
-                <li onClick={() => this.props.completeItem(i, item)} key={i}>{item}</li>
-              )
+            list.map((task, i, arr) => {
+              if (!task.completed) {
+                return (
+                  <li key={i}>{task.name}<div><button onClick={() => toggleComplete(task.id)}>Complete</button><button onClick={() => deleteTask(task.id)}>Delete</button></div></li>
+                )
+              }
             })
           }
-        </ol>
-        <div className='inputContainer'>
-          <input type='text' value={this.state.input} onChange={(e) => {
-            this.setState({
-              input: e.target.value
-            })
-          }}/>
-          <button onClick={() => this.props.addItem(this.state.input)}>Add The Thing!</button>
+        </ul>
+        <div className='addForm'>
+          <h3>Add a new task</h3>
+          <form>
+            <input type='text' value={this.state.text} onChange={(e) => {
+              this.setState({
+                text: e.target.value
+              })
+            }}/>
+            {/* <input type='option' value={this.state.priority} onChange={(e) => {
+              this.setState({
+                priority: e.target.value
+              })
+            }}/> */}
+            <select name="priority" onChange={(e) => {
+              this.setState({
+                priority: e.target.value
+              })
+            }}>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button onClick={(e) => {
+              e.preventDefault();
+              addTask(this.state.text, this.state.priority)
+              }}>Add!</button>
+          </form>
         </div>
       </div>
     )
   }
 }
-export default Todo
+function mapStateToProps(state) {
+  return {
+    list: state.todo
+  }
+}
+export default connect(mapStateToProps, { addTask, toggleComplete, deleteTask })(Todo);

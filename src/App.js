@@ -1,43 +1,32 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+
+import { getTasks } from './ducks/reducer';
+
 import Todo from './components/Todo';
 import Completed from './components/Completed';
+import Filter from './components/Filter';
+
+import './App.css';
 
 MERGE CONFLICT V1
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state ={
-      todo: [],
-      completed: []
-    }
-    this.addItem = this.addItem.bind(this);
-    this.completeItem = this.completeItem.bind(this);
-  }
-  addItem(val) {
-    let todoCopy = this.state.todo.slice();
-    todoCopy.push(val);
-    this.setState({
-      todo: todoCopy
-    })
-  }
-  completeItem(index, val){
-    let todoCopy = this.state.todo.slice();
-    todoCopy.splice(index, 1);
-    let completedCopy = this.state.completed.slice();
-    completedCopy.push(val);
-    this.setState({
-      todo: todoCopy,
-      completed: completedCopy
-    })
+  componentDidMount() {
+    this.props.getTasks();
   }
   render() {
     return (
       <div className="App">
-        <Todo todoList={this.state.todo} addItem={this.addItem} completeItem={this.completeItem}/>
-        <Completed completedList={this.state.completed}/>
+        <Todo />
+        <Completed />
+        <Filter />
+        {/* <Todo addTask={this.addTask} toggleComplete={this.toggleComplete} deleteTask={this.deleteTask} />
+        <Completed toggleComplete={this.toggleComplete} deleteTask={this.deleteTask} />
+        <Filter filter={this.filter} /> */}
       </div>
     );
   }
 }
-export default App;
+export default connect(null, { getTasks })(App);

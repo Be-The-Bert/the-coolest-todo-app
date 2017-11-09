@@ -1,14 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; 
+import { connect } from 'react-redux';
+
+import { toggleComplete, deleteTask } from './../ducks/reducer';
+
+import './Completed.css';
+
 function Completed(props) {
+    const { list, toggleComplete, deleteTask} = props;
     return (
        <div className='Completed'>
         <h1>Completed</h1>
         <ul>
             {
-                props.completedList.map((item, i, arr) => {
+                list.map((task, i, arr) => {
+                  if (task.completed) {
                     return (
-                        <li key={i}>{item}</li>
+                        <li key={i}>{task.name}<div><button onClick={() => toggleComplete(task.id)}>Un-Complete</button><button onClick={() => deleteTask(task.id)}>Delete</button></div></li>
                     )
+                  }
                 })
             }
         </ul>
@@ -24,4 +33,9 @@ function Completed(props) {
     )
   }
 }*/
-export default Completed
+function mapStateToProps(state) {
+  return {
+    list: state.todo
+  }
+}
+export default connect(mapStateToProps, { toggleComplete, deleteTask })(Completed);
